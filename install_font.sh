@@ -8,14 +8,11 @@ mkdir -p $DEST
 if [ -z $SRC ]; then
 	echo "Please specify file."
 	exit 1
-fi
 
-if [ ! -e $SRC ]; then
+elif [ ! -e $SRC ]; then
 	echo "FIle $SRC does not exist."
 	exit 1
-fi
-
-if [[ ! ($SRC == *.zip) ]]; then
+elif [[ ! ($SRC == *.zip) ]]; then
 	echo "File must be zip."
 	exit 1
 fi
