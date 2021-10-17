@@ -8,6 +8,7 @@ OUTPUT_DIRECTORY=~/.fonts
 declare -a font_sources
 
 output_directory=$OUTPUT_DIRECTORY
+me=$(basename "$0")
 
 isolate=0
 keep=0
@@ -26,15 +27,15 @@ error() {
 
 help() {
 	cat <<- EOF
-		usage: finst [option [arg]] [font]
+		usage: $me [option [arg]] [font]
 
-		run 'finst --help' for more info.
+		run '$me --help' for more info.
 	EOF
 }
 
 usage() {
 	cat <<- EOF
-		usage: finst [option [arg]] [font]
+		usage: $me [option [arg]] [font]
 
 		options:
 		  -s, --source		specify source directory
