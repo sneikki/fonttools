@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+declare -A fonts
+
+full_name () {
+	path="$1"
+	output=$(ftdump "$path")
+
+	if [[ $output =~ "Face number: 1" ]]; then
+		return
+	fi
+
+	fontname=$(ftdump "$path" | grep -oP "family:\s+\K.+")
+	fontstyle=$(ftdump "$path" | grep -oP "style:\s+\K.+")
+	echo "${fontname,}-${fontstyle,}"
+}
+
+for file in "$@"
+do
+	file=$file
+	name=$(full_name $file)
+	if [[ -z ${fonts[$name]} ]]; then
+		fonts[$name]="$file"
+	else
+		fonts[$name]="${fonts[$name]} $file"
+	fi
+done
+
+for key in "${!fonts[@]}"
+do
+	fonttosfnt -b -c -g 2 -m 2 -o "$key.otb" ${fonts[$key]}
+done
