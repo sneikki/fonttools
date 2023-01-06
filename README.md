@@ -1,4 +1,7 @@
-# fonttool
+# fonttools
 
-A simple script to quickly install font files from a zip file.
+A collection of scripts to make dealing with bitmap fonts a tolerable experience.
 
+## Todo
+
+* Usage
